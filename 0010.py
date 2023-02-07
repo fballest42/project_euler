@@ -10,11 +10,11 @@ def isprime(num):
 			return 0
 	return 1
 	
-res = 37735793056
-for p in range (1003141, 2000000):
+res = 49134819604
+for p in range (1150417, 2000000):
 	print("Nº",p,"***** SUMA PRIMOS =",res)
 	if isprime(p) == 1:
 		res += p
 print("EL RESULTADO ES = ", res)
 
-#Nº 1003141 ***** SUMA PRIMOS = 37735793056
+#Nº 1150417 ***** SUMA PRIMOS = 49134819604
