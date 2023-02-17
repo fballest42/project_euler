@@ -9,37 +9,42 @@
 # For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one hundred and fifteen) contains 20 letters.
 # The use of "and" when writing out numbers is in compliance with British usage.
 
-size_1num = {1:"one", 2:"two", 3:"three", 4:"four", 5:"five", 6:"six", 7:"seveth", 8:"eight", 9:"nine"}
-fdozen = {10:"ten", 11:"eleven", 12:"twelve", 13:"thirteen", 14:"fourteen", 15:"fifteen", 16:"sixteen", 17:"seventeen", 18:"eighteen", 19:"nineteen", 20:"twenty"}
-dozen = {20:"twenty", 30:"Thirty", 40:"fourty", 50:"fifty", 60:"sixty", 70:"seventy", 80:"eighty", 90:"ninety"}
-hundred = " hundred"
+size_1num = {1:"one", 2:"two", 3:"three", 4:"four", 5:"five", 6:"six", 7:"seven", 8:"eight", 9:"nine", 10:"ten", 11:"eleven", 12:"twelve", 13:"thirteen", 14:"fourteen", 15:"fifteen", 16:"sixteen", 17:"seventeen", 18:"eighteen", 19:"nineteen"}
+dozen = {20:"twenty", 30:"thirty", 40:"forty", 50:"fifty", 60:"sixty", 70:"seventy", 80:"eighty", 90:"ninety"}
+hundred = " hundred "
 
 
-def compose_numeral(numeral, number, num):
-	str_numeral = ''
+def compose_numeral(numerals, number, num):
 	if num == 4:
-		numeral.append("one thousand")
-		return 
+		numerals.append("one thousand")
+		return
+	c = int(number // 100)
+	d = int((number - (c * 100)) // 10)
+	u = int((number - ((c * 100) + (d * 10))))
+	str_numeral = '' 
 	if num == 3:
-		c = int(number // 100)
 		str_numeral = str(size_1num.get(c, ''))
 		str_numeral = str_numeral + hundred
 		num -= 1
-	if num == 2:
-		d = int(number)
-		if d <= 20 and len(str_numeral) != 0:
-			str_numeral = str_numeral + " and " + str(fdozen.get(d, ''))
-		elif d > 20 and len(str_numeral) != 0:
-			str_numeral = str_numeral + " and " + str(dozen.get(d, '')) + "-"
-		elif d <= 20 and len(str_numeral) == 0:
-			str_numeral = str(fdozen.get(d, ''))
-		elif d > 20 and len(str_numeral) == 0:
-			str_numeral = str(dozen.get(d, '')) + "-"
-		num -= 1
-	if num == 1:
-		str_numeral = str_numeral + size_1num.get(number, '')
-	numeral.append([str_numeral])
-	print(numeral)
+	if num <= 2:
+		if (d * 10 + u) <= 19 and len(str_numeral) > 0:
+			if d == 0 and u == 0:
+				str_numeral = str_numeral + str(size_1num.get(u, ''))
+			else:
+				str_numeral = str_numeral + "and " + str(size_1num.get(d * 10 + u, ''))
+		elif (d * 10) > 19 and len(str_numeral) > 0:
+			if u != 0:
+				str_numeral = str_numeral + "and " + str(dozen.get(d * 10)) + '-' + str(size_1num.get(u))
+			else:
+				str_numeral = str_numeral + "and " + str(dozen.get(d * 10))
+		elif (d * 10 + u) <= 19 and len(str_numeral) == 0:
+			str_numeral = str(size_1num.get(d * 10 + u))
+		elif (d * 10 + u) > 19 and len(str_numeral) == 0:
+			if u != 0:
+				str_numeral = str(dozen.get(d * 10)) + '-' + str(size_1num.get(u))
+			else:
+				str_numeral = str(dozen.get(d * 10))
+	numerals.append([str_numeral])
 		
 
 def get_number_letters(number, numerals):
@@ -55,11 +60,12 @@ def get_words(number):
 	while i <= number:
 		get_number_letters(i, numerals)
 		i +=1 
-	letters = 0
-	for i in numerals:
-		letters += len(i)
-	return(print("Number of letters = ", letters))
+	letters = ''
+	for i in range(0, number):
+		letters += ''.join(((str(numerals[i]).strip("['")).strip("']")).split(' '))
+	letters = ''.join(letters.split('-'))
+	return(print("Number of letters = ", len(letters)))
 
 numerals = []	
-get_words(25)
+get_words(1000)
 
