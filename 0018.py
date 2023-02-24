@@ -28,3 +28,31 @@
 # 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
 
 # NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
+
+def get_numbers():
+	numbers =[]
+	with open('num0018.txt', 'r+') as file:
+		for lines in file:
+			numbers.append((lines.strip('\n')).split(' '))
+		print (numbers)
+	return numbers
+
+def check_route(numbers):
+	res = 0
+	x = 0
+	y = 1
+	res = numbers[0][0]
+	while y <= len(numbers):
+		while x <=len(numbers[y]):
+			if (numbers[y][x] + numbers[y + 1][x]) >= (numbers[y][x] + numbers[y + 1][x + 1]):
+				res += numbers[y][x] + numbers[y + 1][x]
+				y = y + 1
+			elif (numbers[y][x] + numbers[y + 1][x]) <= (numbers[y][x] + numbers[y + 1][x + 1]):
+				res += numbers[y][x] + numbers[y + 1][x + 1]
+				x = x + 1
+				y = y + 1
+			if (numbers[y][x] + numbers[y + 1][x]) >= (numbers[y][x + 1] + numbers[]):
+				res += 
+			else:
+				res += numbers[y][x] + numbers[y + 1][x + 1]
+get_numbers()
