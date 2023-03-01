@@ -1,3 +1,0 @@
-https://www.baeldung.com/cs/sleeping-barber-problem
-https://www.geeksforgeeks.org/sleeping-barber-problem-in-process-synchronization/
-https://www.javatpoint.com/sleeping-barber-problem-solution-in-c
