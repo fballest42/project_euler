@@ -12,14 +12,18 @@
 # What is the total of all the name scores in the file?
 
 def get_names():
-	names =[]
-	dic_names = {}
+	names = []
+	sum = 0
+	val = 0
 	with open('p022_names.txt', 'r+') as file:
 		for lines in file:
 			names.append((lines.replace('"', '').split(',')))
-		list_nam = sorted(names[0])
-	for y, name in enumerate(list_nam):
-		dic_names[y + 1] = name 
-	return dic_names
+		names = sorted(names[0])
+		for x, nm in enumerate(names, 1):
+			for letter in nm:
+				val = val + ord(letter) - 64
+			sum = sum + (x * val)
+			val = 0
+	return sum
 
-print(get_names())
+print("THE RESULT IS = ", get_names())
