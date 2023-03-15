@@ -28,5 +28,5 @@ def lexicograph_finder(str, n):
 		if x == n:
 			return (print("THE PERMUTATION,", x, "IS", comb))
 
-str="0123456789"
+str = "0123456789"
 lexicograph_finder(str, 1000000)
