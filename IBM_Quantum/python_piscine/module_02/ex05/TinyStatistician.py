@@ -48,3 +48,6 @@ class TinyStatistician:
     except Exception as exc:
       print("Error: {}: {}", format(type(exc).__name__, exc))
       return None
+
+
+#https://github.com/MCCiupek/bootcamp_ML/blob/52048509b0eae4cac41cfd3e2a51018699084f25/Module00/ex01/TinyStatistician.py
