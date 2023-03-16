@@ -2,13 +2,7 @@
 """ My own version of map()
 
 """
-def testt(i):
-    try:
-        if i == 1:
-            yield "Hola"
-    except:
-        print("ADIOS")
-    return None
+from collections.abc import Iterable
 
 def ft_map(function_to_apply, iterable):
     """Map the function to all elements of the iterable.
@@ -20,8 +14,7 @@ def ft_map(function_to_apply, iterable):
         None if the iterable can not be used by the function.
     """
     try:
-        if isinstance(iterable, (list, tuple)):
-            print("HOLA")
+        if isinstance(iterable, Iterable):
             for i in iterable:
                 yield function_to_apply(i)
         else:
@@ -29,6 +22,4 @@ def ft_map(function_to_apply, iterable):
     except Exception as exc: 
         print(exc)
 
-x = {1, 2, 3, 4, 5}
-print(list(testt(0)))
 # print(ft_map(lambda dum: dum + 1, x))
